@@ -1,4 +1,4 @@
-package com.example.pressure_diary
+package com.bikshanov.pressure_diary
 
 import io.flutter.embedding.android.FlutterActivity
 
