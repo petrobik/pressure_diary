@@ -36,6 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.8
   freezed: ^3.2.5
   freezed_annotation: ^3.1.0
+  drift: ^2.32.0
+  drift_flutter: ^0.3.0
+  path_provider: ^2.1.5
 
 dev_dependencies:
   flutter_test:
@@ -48,6 +51,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
   build_runner: ^2.13.1
+  drift_dev: ^2.32.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
