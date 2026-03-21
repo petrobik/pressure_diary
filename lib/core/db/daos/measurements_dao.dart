@@ -16,6 +16,12 @@ class MeasurementsDao extends DatabaseAccessor<AppDatabase> with _$MeasurementsD
     return update(measurements).replace(entry);
   }
 
+  Future<void> updateById(int id, MeasurementsCompanion entry) {
+    return (update(measurements)..where((t) => t.id.equals(id))).write(
+      entry.copyWith(updatedAt: Value(DateTime.now())),
+    );
+  }
+
   Future<int> deleteById(int id) {
     return (delete(measurements)..where((t) => t.id.equals(id))).go();
   }
