@@ -169,6 +169,26 @@ Not in widgets.
 
 ---
 
+## Tests
+
+Test structure mirrors `lib/` at a practical level.
+
+Examples:
+
+- `lib/core/blood_pressure/bp_classifier.dart`
+  -> `test/core/blood_pressure/bp_classifier_test.dart`
+
+- `lib/features/measurements/data/measurement_mapper.dart`
+  -> `test/features/measurements/data/measurement_mapper_test.dart`
+
+Prefer:
+
+- unit tests for pure logic
+- bloc tests for state management
+- widget tests only where they add real value
+
+---
+
 ## General Rule
 
 Prefer:
