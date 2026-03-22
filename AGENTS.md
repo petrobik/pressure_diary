@@ -63,7 +63,7 @@ See `/docs/project_structure.md`.
 
 # Domain
 
-Main entity: `Measurement`
+Main entity: `Measurement`.
 
 See `/docs/domain_model.md`.
 
@@ -96,6 +96,91 @@ By default:
 - do not create repository interfaces
 - do not create `RepositoryImpl` classes unless abstraction gives real value
 - do not add use cases by default
+
+---
+
+# Bloc + Freezed Rules
+
+For Bloc + Freezed:
+
+- use a single `on<Event>((event, emit) => switch (event) { ... })`
+- dispatch each case to a private method
+- use Dart pattern matching
+- use private Freezed variants such as `_Submitted`, `_SystolicChanged`
+- do NOT use `when` / `map` / `maybeWhen` / `maybeMap`
+- do NOT use multiple `on<_Event>()`
+- do NOT introduce `_onEvent` wrapper methods
+- do NOT create helper methods for trivial `emit(copyWith(...))` calls
+
+Preferred style:
+
+```dart
+on<MeasurementFormEvent>(
+  (event, emit) => switch (event) {
+    _SystolicChanged(:final value) => _systolicChanged(value, emit),
+    _DiastolicChanged(:final value) => _diastolicChanged(value, emit),
+    _PulseChanged(:final value) => _pulseChanged(value, emit),
+    _MoodChanged(:final mood) => _moodChanged(mood, emit),
+    _CommentChanged(:final comment) => _commentChanged(comment, emit),
+    _TagsChanged(:final tags) => _tagsChanged(tags, emit),
+    _TimestampChanged(:final timestamp) => _timestampChanged(timestamp, emit),
+    _Submitted() => _submitted(emit),
+    _SubmitFeedbackCleared() => _submitFeedbackCleared(emit),
+    _ => null,
+  },
+);
+```
+
+Use meaningful variable names in switch pattern matching when they improve readability.
+
+Examples:
+
+- `_MoodChanged(:final mood)`
+- `_CommentChanged(:final comment)`
+- `_TimestampChanged(:final timestamp)`
+
+Avoid generic names like `value` when a semantic name is clearer.
+
+---
+
+# Bloc File Structure
+
+For Bloc + Freezed, use a single library split across files with `part` / `part of`.
+
+Preferred structure:
+
+```text
+measurement_form/
+  measurement_form.dart
+  measurement_form_bloc.dart
+  measurement_form_event.dart
+  measurement_form_state.dart
+```
+
+`measurement_form.dart` contains:
+
+- imports
+- `part 'measurement_form.freezed.dart';`
+- `part 'measurement_form_bloc.dart';`
+- `part 'measurement_form_event.dart';`
+- `part 'measurement_form_state.dart';`
+
+Other files must use:
+
+```dart
+part of 'measurement_form.dart';
+```
+
+Rules:
+
+- keep bloc/event/state in one library
+- use one `measurement_form.freezed.dart` file
+- do NOT generate separate `event.freezed.dart` and `state.freezed.dart`
+- do NOT use generic file names like `bloc.dart`, `event.dart`, `state.dart`
+- always use feature-prefixed file names:
+  - `measurement_form_bloc.dart`
+  - `measurement_form_event.dart`
+  - `measurement_form_state.dart`
 
 ---
 

@@ -74,6 +74,7 @@ features/
     domain/
       measurement.dart
     data/
+      measurement_mapper.dart
       measurement_repository.dart
     presentation/
       bloc/
@@ -95,6 +96,7 @@ Rules:
 
 - feature owns its logic
 - domain model for measurement lives in `features/measurements/domain/`
+- mappers and repositories live in `features/<feature>/data/`
 - do not create extra layers without a real need
 
 ---
@@ -115,6 +117,30 @@ Rules:
 
 - shared is for reusable presentation code
 - no business logic in `shared/`
+
+---
+
+## tests/
+
+Test structure mirrors `lib/` at a practical level.
+
+Example:
+
+```text
+test/
+  core/
+    blood_pressure/
+      bp_classifier_test.dart
+
+  features/
+    measurements/
+      data/
+        measurement_mapper_test.dart
+        measurement_repository_test.dart
+      presentation/
+        bloc/
+          measurement_form_bloc_test.dart
+```
 
 ---
 

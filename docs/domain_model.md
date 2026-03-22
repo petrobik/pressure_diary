@@ -16,8 +16,8 @@ Fields:
 - `timestamp` (`DateTime`)
 - `mood` (`int?`)
 - `comment` (`String?`)
-- `tags` (`List<String>?`)
-- `bpCategory` (`BpCategory`)
+- `tags` (`List<String>`)
+- `category` (`BpCategory`)
 
 Domain model should be immutable.
 
@@ -25,19 +25,16 @@ Example:
 
 ```dart
 @freezed
-class Measurement with _$Measurement {
+abstract class Measurement with _$Measurement {
   const factory Measurement({
-    int? id,
     required int systolic,
     required int diastolic,
     required int pulse,
     required DateTime timestamp,
     int? mood,
     String? comment,
-    List<String>? tags,
-    required BpCategory bpCategory,
-    DateTime? createdAt,
-    DateTime? updatedAt,
+    @Default([]) List<String> tags,
+    required BpCategory category,
   }) = _Measurement;
 }
 ```
@@ -82,7 +79,7 @@ Rules:
 
 ## Database Mapping
 
-In database `bpCategory` is stored as integer:
+In database `category` is stored as integer:
 
 - `hypotension` -> `0`
 - `optimal` -> `1`
@@ -92,4 +89,4 @@ In database `bpCategory` is stored as integer:
 - `hypertension2` -> `5`
 - `hypertension3` -> `6`
 
-Tags are stored as JSON string in database and mapped to `List<String>` in domain.
+Tags are stored as non-null JSON string in database with default `'[]'` and mapped to `List<String>` in domain.
