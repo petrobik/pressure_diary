@@ -12,11 +12,17 @@ part of 'measurement_form.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$MeasurementFormEvent {
+mixin _$MeasurementFormEvent implements DiagnosticableTreeMixin {
 
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'MeasurementFormEvent'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -28,7 +34,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'MeasurementFormEvent()';
 }
 
@@ -222,7 +228,7 @@ return submitFeedbackCleared();case _:
 /// @nodoc
 
 
-class _SystolicChanged implements MeasurementFormEvent {
+class _SystolicChanged with DiagnosticableTreeMixin implements MeasurementFormEvent {
   const _SystolicChanged(this.value);
   
 
@@ -235,6 +241,12 @@ class _SystolicChanged implements MeasurementFormEvent {
 _$SystolicChangedCopyWith<_SystolicChanged> get copyWith => __$SystolicChangedCopyWithImpl<_SystolicChanged>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'MeasurementFormEvent.systolicChanged'))
+    ..add(DiagnosticsProperty('value', value));
+}
 
 @override
 bool operator ==(Object other) {
@@ -246,7 +258,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,value);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'MeasurementFormEvent.systolicChanged(value: $value)';
 }
 
@@ -288,7 +300,7 @@ as String,
 /// @nodoc
 
 
-class _DiastolicChanged implements MeasurementFormEvent {
+class _DiastolicChanged with DiagnosticableTreeMixin implements MeasurementFormEvent {
   const _DiastolicChanged(this.value);
   
 
@@ -301,6 +313,12 @@ class _DiastolicChanged implements MeasurementFormEvent {
 _$DiastolicChangedCopyWith<_DiastolicChanged> get copyWith => __$DiastolicChangedCopyWithImpl<_DiastolicChanged>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'MeasurementFormEvent.diastolicChanged'))
+    ..add(DiagnosticsProperty('value', value));
+}
 
 @override
 bool operator ==(Object other) {
@@ -312,7 +330,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,value);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'MeasurementFormEvent.diastolicChanged(value: $value)';
 }
 
@@ -354,7 +372,7 @@ as String,
 /// @nodoc
 
 
-class _PulseChanged implements MeasurementFormEvent {
+class _PulseChanged with DiagnosticableTreeMixin implements MeasurementFormEvent {
   const _PulseChanged(this.value);
   
 
@@ -367,6 +385,12 @@ class _PulseChanged implements MeasurementFormEvent {
 _$PulseChangedCopyWith<_PulseChanged> get copyWith => __$PulseChangedCopyWithImpl<_PulseChanged>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'MeasurementFormEvent.pulseChanged'))
+    ..add(DiagnosticsProperty('value', value));
+}
 
 @override
 bool operator ==(Object other) {
@@ -378,7 +402,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,value);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'MeasurementFormEvent.pulseChanged(value: $value)';
 }
 
@@ -420,7 +444,7 @@ as String,
 /// @nodoc
 
 
-class _MoodChanged implements MeasurementFormEvent {
+class _MoodChanged with DiagnosticableTreeMixin implements MeasurementFormEvent {
   const _MoodChanged(this.mood);
   
 
@@ -433,6 +457,12 @@ class _MoodChanged implements MeasurementFormEvent {
 _$MoodChangedCopyWith<_MoodChanged> get copyWith => __$MoodChangedCopyWithImpl<_MoodChanged>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'MeasurementFormEvent.moodChanged'))
+    ..add(DiagnosticsProperty('mood', mood));
+}
 
 @override
 bool operator ==(Object other) {
@@ -444,7 +474,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,mood);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'MeasurementFormEvent.moodChanged(mood: $mood)';
 }
 
@@ -486,7 +516,7 @@ as int?,
 /// @nodoc
 
 
-class _CommentChanged implements MeasurementFormEvent {
+class _CommentChanged with DiagnosticableTreeMixin implements MeasurementFormEvent {
   const _CommentChanged(this.comment);
   
 
@@ -499,6 +529,12 @@ class _CommentChanged implements MeasurementFormEvent {
 _$CommentChangedCopyWith<_CommentChanged> get copyWith => __$CommentChangedCopyWithImpl<_CommentChanged>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'MeasurementFormEvent.commentChanged'))
+    ..add(DiagnosticsProperty('comment', comment));
+}
 
 @override
 bool operator ==(Object other) {
@@ -510,7 +546,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,comment);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'MeasurementFormEvent.commentChanged(comment: $comment)';
 }
 
@@ -552,7 +588,7 @@ as String,
 /// @nodoc
 
 
-class _TagsChanged implements MeasurementFormEvent {
+class _TagsChanged with DiagnosticableTreeMixin implements MeasurementFormEvent {
   const _TagsChanged(final  List<String> tags): _tags = tags;
   
 
@@ -571,6 +607,12 @@ class _TagsChanged implements MeasurementFormEvent {
 _$TagsChangedCopyWith<_TagsChanged> get copyWith => __$TagsChangedCopyWithImpl<_TagsChanged>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'MeasurementFormEvent.tagsChanged'))
+    ..add(DiagnosticsProperty('tags', tags));
+}
 
 @override
 bool operator ==(Object other) {
@@ -582,7 +624,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_tags));
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'MeasurementFormEvent.tagsChanged(tags: $tags)';
 }
 
@@ -624,7 +666,7 @@ as List<String>,
 /// @nodoc
 
 
-class _TimestampChanged implements MeasurementFormEvent {
+class _TimestampChanged with DiagnosticableTreeMixin implements MeasurementFormEvent {
   const _TimestampChanged(this.timestamp);
   
 
@@ -637,6 +679,12 @@ class _TimestampChanged implements MeasurementFormEvent {
 _$TimestampChangedCopyWith<_TimestampChanged> get copyWith => __$TimestampChangedCopyWithImpl<_TimestampChanged>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'MeasurementFormEvent.timestampChanged'))
+    ..add(DiagnosticsProperty('timestamp', timestamp));
+}
 
 @override
 bool operator ==(Object other) {
@@ -648,7 +696,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,timestamp);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'MeasurementFormEvent.timestampChanged(timestamp: $timestamp)';
 }
 
@@ -690,7 +738,7 @@ as DateTime,
 /// @nodoc
 
 
-class _Submitted implements MeasurementFormEvent {
+class _Submitted with DiagnosticableTreeMixin implements MeasurementFormEvent {
   const _Submitted();
   
 
@@ -698,6 +746,12 @@ class _Submitted implements MeasurementFormEvent {
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'MeasurementFormEvent.submitted'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -709,7 +763,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'MeasurementFormEvent.submitted()';
 }
 
@@ -722,7 +776,7 @@ String toString() {
 /// @nodoc
 
 
-class _SubmitFeedbackCleared implements MeasurementFormEvent {
+class _SubmitFeedbackCleared with DiagnosticableTreeMixin implements MeasurementFormEvent {
   const _SubmitFeedbackCleared();
   
 
@@ -730,6 +784,12 @@ class _SubmitFeedbackCleared implements MeasurementFormEvent {
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'MeasurementFormEvent.submitFeedbackCleared'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -741,7 +801,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'MeasurementFormEvent.submitFeedbackCleared()';
 }
 
@@ -752,9 +812,9 @@ String toString() {
 
 
 /// @nodoc
-mixin _$MeasurementFormState {
+mixin _$MeasurementFormState implements DiagnosticableTreeMixin {
 
- String get systolicInput; String get diastolicInput; String get pulseInput; int? get mood; String get commentInput; List<String> get tags; DateTime get timestamp; String? get formError; bool get isSubmitting; bool get isSubmitSuccess;
+ String get systolicInput; String get diastolicInput; String get pulseInput; int? get mood; String get commentInput; List<String> get tags; DateTime get timestamp; bool get isEditing; bool get isDirty; String? get formError; bool get isSubmitting; bool get isSubmitSuccess;
 /// Create a copy of MeasurementFormState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -762,19 +822,25 @@ mixin _$MeasurementFormState {
 $MeasurementFormStateCopyWith<MeasurementFormState> get copyWith => _$MeasurementFormStateCopyWithImpl<MeasurementFormState>(this as MeasurementFormState, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'MeasurementFormState'))
+    ..add(DiagnosticsProperty('systolicInput', systolicInput))..add(DiagnosticsProperty('diastolicInput', diastolicInput))..add(DiagnosticsProperty('pulseInput', pulseInput))..add(DiagnosticsProperty('mood', mood))..add(DiagnosticsProperty('commentInput', commentInput))..add(DiagnosticsProperty('tags', tags))..add(DiagnosticsProperty('timestamp', timestamp))..add(DiagnosticsProperty('isEditing', isEditing))..add(DiagnosticsProperty('isDirty', isDirty))..add(DiagnosticsProperty('formError', formError))..add(DiagnosticsProperty('isSubmitting', isSubmitting))..add(DiagnosticsProperty('isSubmitSuccess', isSubmitSuccess));
+}
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MeasurementFormState&&(identical(other.systolicInput, systolicInput) || other.systolicInput == systolicInput)&&(identical(other.diastolicInput, diastolicInput) || other.diastolicInput == diastolicInput)&&(identical(other.pulseInput, pulseInput) || other.pulseInput == pulseInput)&&(identical(other.mood, mood) || other.mood == mood)&&(identical(other.commentInput, commentInput) || other.commentInput == commentInput)&&const DeepCollectionEquality().equals(other.tags, tags)&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp)&&(identical(other.formError, formError) || other.formError == formError)&&(identical(other.isSubmitting, isSubmitting) || other.isSubmitting == isSubmitting)&&(identical(other.isSubmitSuccess, isSubmitSuccess) || other.isSubmitSuccess == isSubmitSuccess));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MeasurementFormState&&(identical(other.systolicInput, systolicInput) || other.systolicInput == systolicInput)&&(identical(other.diastolicInput, diastolicInput) || other.diastolicInput == diastolicInput)&&(identical(other.pulseInput, pulseInput) || other.pulseInput == pulseInput)&&(identical(other.mood, mood) || other.mood == mood)&&(identical(other.commentInput, commentInput) || other.commentInput == commentInput)&&const DeepCollectionEquality().equals(other.tags, tags)&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp)&&(identical(other.isEditing, isEditing) || other.isEditing == isEditing)&&(identical(other.isDirty, isDirty) || other.isDirty == isDirty)&&(identical(other.formError, formError) || other.formError == formError)&&(identical(other.isSubmitting, isSubmitting) || other.isSubmitting == isSubmitting)&&(identical(other.isSubmitSuccess, isSubmitSuccess) || other.isSubmitSuccess == isSubmitSuccess));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,systolicInput,diastolicInput,pulseInput,mood,commentInput,const DeepCollectionEquality().hash(tags),timestamp,formError,isSubmitting,isSubmitSuccess);
+int get hashCode => Object.hash(runtimeType,systolicInput,diastolicInput,pulseInput,mood,commentInput,const DeepCollectionEquality().hash(tags),timestamp,isEditing,isDirty,formError,isSubmitting,isSubmitSuccess);
 
 @override
-String toString() {
-  return 'MeasurementFormState(systolicInput: $systolicInput, diastolicInput: $diastolicInput, pulseInput: $pulseInput, mood: $mood, commentInput: $commentInput, tags: $tags, timestamp: $timestamp, formError: $formError, isSubmitting: $isSubmitting, isSubmitSuccess: $isSubmitSuccess)';
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'MeasurementFormState(systolicInput: $systolicInput, diastolicInput: $diastolicInput, pulseInput: $pulseInput, mood: $mood, commentInput: $commentInput, tags: $tags, timestamp: $timestamp, isEditing: $isEditing, isDirty: $isDirty, formError: $formError, isSubmitting: $isSubmitting, isSubmitSuccess: $isSubmitSuccess)';
 }
 
 
@@ -785,7 +851,7 @@ abstract mixin class $MeasurementFormStateCopyWith<$Res>  {
   factory $MeasurementFormStateCopyWith(MeasurementFormState value, $Res Function(MeasurementFormState) _then) = _$MeasurementFormStateCopyWithImpl;
 @useResult
 $Res call({
- String systolicInput, String diastolicInput, String pulseInput, int? mood, String commentInput, List<String> tags, DateTime timestamp, String? formError, bool isSubmitting, bool isSubmitSuccess
+ String systolicInput, String diastolicInput, String pulseInput, int? mood, String commentInput, List<String> tags, DateTime timestamp, bool isEditing, bool isDirty, String? formError, bool isSubmitting, bool isSubmitSuccess
 });
 
 
@@ -802,7 +868,7 @@ class _$MeasurementFormStateCopyWithImpl<$Res>
 
 /// Create a copy of MeasurementFormState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? systolicInput = null,Object? diastolicInput = null,Object? pulseInput = null,Object? mood = freezed,Object? commentInput = null,Object? tags = null,Object? timestamp = null,Object? formError = freezed,Object? isSubmitting = null,Object? isSubmitSuccess = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? systolicInput = null,Object? diastolicInput = null,Object? pulseInput = null,Object? mood = freezed,Object? commentInput = null,Object? tags = null,Object? timestamp = null,Object? isEditing = null,Object? isDirty = null,Object? formError = freezed,Object? isSubmitting = null,Object? isSubmitSuccess = null,}) {
   return _then(_self.copyWith(
 systolicInput: null == systolicInput ? _self.systolicInput : systolicInput // ignore: cast_nullable_to_non_nullable
 as String,diastolicInput: null == diastolicInput ? _self.diastolicInput : diastolicInput // ignore: cast_nullable_to_non_nullable
@@ -811,7 +877,9 @@ as String,mood: freezed == mood ? _self.mood : mood // ignore: cast_nullable_to_
 as int?,commentInput: null == commentInput ? _self.commentInput : commentInput // ignore: cast_nullable_to_non_nullable
 as String,tags: null == tags ? _self.tags : tags // ignore: cast_nullable_to_non_nullable
 as List<String>,timestamp: null == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
-as DateTime,formError: freezed == formError ? _self.formError : formError // ignore: cast_nullable_to_non_nullable
+as DateTime,isEditing: null == isEditing ? _self.isEditing : isEditing // ignore: cast_nullable_to_non_nullable
+as bool,isDirty: null == isDirty ? _self.isDirty : isDirty // ignore: cast_nullable_to_non_nullable
+as bool,formError: freezed == formError ? _self.formError : formError // ignore: cast_nullable_to_non_nullable
 as String?,isSubmitting: null == isSubmitting ? _self.isSubmitting : isSubmitting // ignore: cast_nullable_to_non_nullable
 as bool,isSubmitSuccess: null == isSubmitSuccess ? _self.isSubmitSuccess : isSubmitSuccess // ignore: cast_nullable_to_non_nullable
 as bool,
@@ -899,10 +967,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String systolicInput,  String diastolicInput,  String pulseInput,  int? mood,  String commentInput,  List<String> tags,  DateTime timestamp,  String? formError,  bool isSubmitting,  bool isSubmitSuccess)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String systolicInput,  String diastolicInput,  String pulseInput,  int? mood,  String commentInput,  List<String> tags,  DateTime timestamp,  bool isEditing,  bool isDirty,  String? formError,  bool isSubmitting,  bool isSubmitSuccess)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MeasurementFormState() when $default != null:
-return $default(_that.systolicInput,_that.diastolicInput,_that.pulseInput,_that.mood,_that.commentInput,_that.tags,_that.timestamp,_that.formError,_that.isSubmitting,_that.isSubmitSuccess);case _:
+return $default(_that.systolicInput,_that.diastolicInput,_that.pulseInput,_that.mood,_that.commentInput,_that.tags,_that.timestamp,_that.isEditing,_that.isDirty,_that.formError,_that.isSubmitting,_that.isSubmitSuccess);case _:
   return orElse();
 
 }
@@ -920,10 +988,10 @@ return $default(_that.systolicInput,_that.diastolicInput,_that.pulseInput,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String systolicInput,  String diastolicInput,  String pulseInput,  int? mood,  String commentInput,  List<String> tags,  DateTime timestamp,  String? formError,  bool isSubmitting,  bool isSubmitSuccess)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String systolicInput,  String diastolicInput,  String pulseInput,  int? mood,  String commentInput,  List<String> tags,  DateTime timestamp,  bool isEditing,  bool isDirty,  String? formError,  bool isSubmitting,  bool isSubmitSuccess)  $default,) {final _that = this;
 switch (_that) {
 case _MeasurementFormState():
-return $default(_that.systolicInput,_that.diastolicInput,_that.pulseInput,_that.mood,_that.commentInput,_that.tags,_that.timestamp,_that.formError,_that.isSubmitting,_that.isSubmitSuccess);case _:
+return $default(_that.systolicInput,_that.diastolicInput,_that.pulseInput,_that.mood,_that.commentInput,_that.tags,_that.timestamp,_that.isEditing,_that.isDirty,_that.formError,_that.isSubmitting,_that.isSubmitSuccess);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -940,10 +1008,10 @@ return $default(_that.systolicInput,_that.diastolicInput,_that.pulseInput,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String systolicInput,  String diastolicInput,  String pulseInput,  int? mood,  String commentInput,  List<String> tags,  DateTime timestamp,  String? formError,  bool isSubmitting,  bool isSubmitSuccess)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String systolicInput,  String diastolicInput,  String pulseInput,  int? mood,  String commentInput,  List<String> tags,  DateTime timestamp,  bool isEditing,  bool isDirty,  String? formError,  bool isSubmitting,  bool isSubmitSuccess)?  $default,) {final _that = this;
 switch (_that) {
 case _MeasurementFormState() when $default != null:
-return $default(_that.systolicInput,_that.diastolicInput,_that.pulseInput,_that.mood,_that.commentInput,_that.tags,_that.timestamp,_that.formError,_that.isSubmitting,_that.isSubmitSuccess);case _:
+return $default(_that.systolicInput,_that.diastolicInput,_that.pulseInput,_that.mood,_that.commentInput,_that.tags,_that.timestamp,_that.isEditing,_that.isDirty,_that.formError,_that.isSubmitting,_that.isSubmitSuccess);case _:
   return null;
 
 }
@@ -954,8 +1022,8 @@ return $default(_that.systolicInput,_that.diastolicInput,_that.pulseInput,_that.
 /// @nodoc
 
 
-class _MeasurementFormState implements MeasurementFormState {
-  const _MeasurementFormState({this.systolicInput = '', this.diastolicInput = '', this.pulseInput = '', this.mood, this.commentInput = '', final  List<String> tags = const <String>[], required this.timestamp, this.formError, this.isSubmitting = false, this.isSubmitSuccess = false}): _tags = tags;
+class _MeasurementFormState extends MeasurementFormState with DiagnosticableTreeMixin {
+  const _MeasurementFormState({this.systolicInput = '', this.diastolicInput = '', this.pulseInput = '', this.mood, this.commentInput = '', final  List<String> tags = const <String>[], required this.timestamp, this.isEditing = false, this.isDirty = false, this.formError, this.isSubmitting = false, this.isSubmitSuccess = false}): _tags = tags,super._();
   
 
 @override@JsonKey() final  String systolicInput;
@@ -971,6 +1039,8 @@ class _MeasurementFormState implements MeasurementFormState {
 }
 
 @override final  DateTime timestamp;
+@override@JsonKey() final  bool isEditing;
+@override@JsonKey() final  bool isDirty;
 @override final  String? formError;
 @override@JsonKey() final  bool isSubmitting;
 @override@JsonKey() final  bool isSubmitSuccess;
@@ -982,19 +1052,25 @@ class _MeasurementFormState implements MeasurementFormState {
 _$MeasurementFormStateCopyWith<_MeasurementFormState> get copyWith => __$MeasurementFormStateCopyWithImpl<_MeasurementFormState>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'MeasurementFormState'))
+    ..add(DiagnosticsProperty('systolicInput', systolicInput))..add(DiagnosticsProperty('diastolicInput', diastolicInput))..add(DiagnosticsProperty('pulseInput', pulseInput))..add(DiagnosticsProperty('mood', mood))..add(DiagnosticsProperty('commentInput', commentInput))..add(DiagnosticsProperty('tags', tags))..add(DiagnosticsProperty('timestamp', timestamp))..add(DiagnosticsProperty('isEditing', isEditing))..add(DiagnosticsProperty('isDirty', isDirty))..add(DiagnosticsProperty('formError', formError))..add(DiagnosticsProperty('isSubmitting', isSubmitting))..add(DiagnosticsProperty('isSubmitSuccess', isSubmitSuccess));
+}
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MeasurementFormState&&(identical(other.systolicInput, systolicInput) || other.systolicInput == systolicInput)&&(identical(other.diastolicInput, diastolicInput) || other.diastolicInput == diastolicInput)&&(identical(other.pulseInput, pulseInput) || other.pulseInput == pulseInput)&&(identical(other.mood, mood) || other.mood == mood)&&(identical(other.commentInput, commentInput) || other.commentInput == commentInput)&&const DeepCollectionEquality().equals(other._tags, _tags)&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp)&&(identical(other.formError, formError) || other.formError == formError)&&(identical(other.isSubmitting, isSubmitting) || other.isSubmitting == isSubmitting)&&(identical(other.isSubmitSuccess, isSubmitSuccess) || other.isSubmitSuccess == isSubmitSuccess));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MeasurementFormState&&(identical(other.systolicInput, systolicInput) || other.systolicInput == systolicInput)&&(identical(other.diastolicInput, diastolicInput) || other.diastolicInput == diastolicInput)&&(identical(other.pulseInput, pulseInput) || other.pulseInput == pulseInput)&&(identical(other.mood, mood) || other.mood == mood)&&(identical(other.commentInput, commentInput) || other.commentInput == commentInput)&&const DeepCollectionEquality().equals(other._tags, _tags)&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp)&&(identical(other.isEditing, isEditing) || other.isEditing == isEditing)&&(identical(other.isDirty, isDirty) || other.isDirty == isDirty)&&(identical(other.formError, formError) || other.formError == formError)&&(identical(other.isSubmitting, isSubmitting) || other.isSubmitting == isSubmitting)&&(identical(other.isSubmitSuccess, isSubmitSuccess) || other.isSubmitSuccess == isSubmitSuccess));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,systolicInput,diastolicInput,pulseInput,mood,commentInput,const DeepCollectionEquality().hash(_tags),timestamp,formError,isSubmitting,isSubmitSuccess);
+int get hashCode => Object.hash(runtimeType,systolicInput,diastolicInput,pulseInput,mood,commentInput,const DeepCollectionEquality().hash(_tags),timestamp,isEditing,isDirty,formError,isSubmitting,isSubmitSuccess);
 
 @override
-String toString() {
-  return 'MeasurementFormState(systolicInput: $systolicInput, diastolicInput: $diastolicInput, pulseInput: $pulseInput, mood: $mood, commentInput: $commentInput, tags: $tags, timestamp: $timestamp, formError: $formError, isSubmitting: $isSubmitting, isSubmitSuccess: $isSubmitSuccess)';
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'MeasurementFormState(systolicInput: $systolicInput, diastolicInput: $diastolicInput, pulseInput: $pulseInput, mood: $mood, commentInput: $commentInput, tags: $tags, timestamp: $timestamp, isEditing: $isEditing, isDirty: $isDirty, formError: $formError, isSubmitting: $isSubmitting, isSubmitSuccess: $isSubmitSuccess)';
 }
 
 
@@ -1005,7 +1081,7 @@ abstract mixin class _$MeasurementFormStateCopyWith<$Res> implements $Measuremen
   factory _$MeasurementFormStateCopyWith(_MeasurementFormState value, $Res Function(_MeasurementFormState) _then) = __$MeasurementFormStateCopyWithImpl;
 @override @useResult
 $Res call({
- String systolicInput, String diastolicInput, String pulseInput, int? mood, String commentInput, List<String> tags, DateTime timestamp, String? formError, bool isSubmitting, bool isSubmitSuccess
+ String systolicInput, String diastolicInput, String pulseInput, int? mood, String commentInput, List<String> tags, DateTime timestamp, bool isEditing, bool isDirty, String? formError, bool isSubmitting, bool isSubmitSuccess
 });
 
 
@@ -1022,7 +1098,7 @@ class __$MeasurementFormStateCopyWithImpl<$Res>
 
 /// Create a copy of MeasurementFormState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? systolicInput = null,Object? diastolicInput = null,Object? pulseInput = null,Object? mood = freezed,Object? commentInput = null,Object? tags = null,Object? timestamp = null,Object? formError = freezed,Object? isSubmitting = null,Object? isSubmitSuccess = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? systolicInput = null,Object? diastolicInput = null,Object? pulseInput = null,Object? mood = freezed,Object? commentInput = null,Object? tags = null,Object? timestamp = null,Object? isEditing = null,Object? isDirty = null,Object? formError = freezed,Object? isSubmitting = null,Object? isSubmitSuccess = null,}) {
   return _then(_MeasurementFormState(
 systolicInput: null == systolicInput ? _self.systolicInput : systolicInput // ignore: cast_nullable_to_non_nullable
 as String,diastolicInput: null == diastolicInput ? _self.diastolicInput : diastolicInput // ignore: cast_nullable_to_non_nullable
@@ -1031,7 +1107,9 @@ as String,mood: freezed == mood ? _self.mood : mood // ignore: cast_nullable_to_
 as int?,commentInput: null == commentInput ? _self.commentInput : commentInput // ignore: cast_nullable_to_non_nullable
 as String,tags: null == tags ? _self._tags : tags // ignore: cast_nullable_to_non_nullable
 as List<String>,timestamp: null == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
-as DateTime,formError: freezed == formError ? _self.formError : formError // ignore: cast_nullable_to_non_nullable
+as DateTime,isEditing: null == isEditing ? _self.isEditing : isEditing // ignore: cast_nullable_to_non_nullable
+as bool,isDirty: null == isDirty ? _self.isDirty : isDirty // ignore: cast_nullable_to_non_nullable
+as bool,formError: freezed == formError ? _self.formError : formError // ignore: cast_nullable_to_non_nullable
 as String?,isSubmitting: null == isSubmitting ? _self.isSubmitting : isSubmitting // ignore: cast_nullable_to_non_nullable
 as bool,isSubmitSuccess: null == isSubmitSuccess ? _self.isSubmitSuccess : isSubmitSuccess // ignore: cast_nullable_to_non_nullable
 as bool,

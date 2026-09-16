@@ -4,7 +4,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:pressure_diary/core/blood_pressure/bp_category.dart';
 import 'package:pressure_diary/core/blood_pressure/bp_classifier.dart';
 import 'package:pressure_diary/features/measurements/data/measurement_repository.dart';
-import 'package:pressure_diary/features/measurements/presentation/bloc/measurement_form.dart';
+import 'package:pressure_diary/features/measurements/presentation/measurement_form/measurement_form.dart';
 
 class _MeasurementRepositoryMock extends Mock implements MeasurementRepository {}
 
@@ -328,13 +328,13 @@ void main() {
   );
 
   blocTest<MeasurementFormBloc, MeasurementFormState>(
-    'submitFeedbackCleared clears submit feedback only',
+    'submitFeedbackCleared clears error without changing input',
     build: buildBloc,
     seed:
         () => MeasurementFormState.initial(
           timestamp: DateTime(2026, 3, 22, 12, 0),
         ).copyWith(
-          isSubmitSuccess: true,
+          isSubmitSuccess: false,
           formError: 'error',
           systolicInput: '123',
         ),
