@@ -12,11 +12,7 @@ class MeasurementsDao extends DatabaseAccessor<AppDatabase> with _$MeasurementsD
     return into(measurements).insert(entry);
   }
 
-  Future<bool> updateMeasurement(Measurement entry) {
-    return update(measurements).replace(entry);
-  }
-
-  Future<void> updateById(int id, MeasurementsCompanion entry) {
+  Future<int> updateById(int id, MeasurementsCompanion entry) {
     return (update(measurements)..where((t) => t.id.equals(id))).write(
       entry.copyWith(updatedAt: Value(DateTime.now())),
     );
@@ -27,7 +23,8 @@ class MeasurementsDao extends DatabaseAccessor<AppDatabase> with _$MeasurementsD
   }
 
   Stream<List<Measurement>> watchAll() {
-    return (select(measurements)..orderBy([(t) => OrderingTerm.desc(t.timestamp)])).watch();
+    return (select(measurements)
+      ..orderBy([(t) => OrderingTerm.desc(t.timestamp), (t) => OrderingTerm.desc(t.id)])).watch();
   }
 
   Future<Measurement?> getLatest() {

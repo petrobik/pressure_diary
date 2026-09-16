@@ -4,26 +4,35 @@ import 'package:mocktail/mocktail.dart';
 import 'package:pressure_diary/core/blood_pressure/bp_category.dart';
 import 'package:pressure_diary/core/blood_pressure/bp_classifier.dart';
 import 'package:pressure_diary/features/measurements/data/measurement_repository.dart';
-import 'package:pressure_diary/features/measurements/domain/measurement.dart' as domain;
 import 'package:pressure_diary/features/measurements/presentation/bloc/measurement_form.dart';
 
 class _MeasurementRepositoryMock extends Mock implements MeasurementRepository {}
-
-class _MeasurementFake extends Fake implements domain.Measurement {}
 
 void main() {
   late _MeasurementRepositoryMock repository;
   late BpClassifier classifier;
 
   setUpAll(() {
-    registerFallbackValue(_MeasurementFake());
+    registerFallbackValue(DateTime(2026));
+    registerFallbackValue(BpCategory.normal);
   });
 
   setUp(() {
     repository = _MeasurementRepositoryMock();
     classifier = const BpClassifier();
 
-    when(() => repository.add(any())).thenAnswer((_) async {});
+    when(
+      () => repository.create(
+        systolic: any(named: 'systolic'),
+        diastolic: any(named: 'diastolic'),
+        pulse: any(named: 'pulse'),
+        timestamp: any(named: 'timestamp'),
+        mood: any(named: 'mood'),
+        comment: any(named: 'comment'),
+        tags: any(named: 'tags'),
+        category: any(named: 'category'),
+      ),
+    ).thenAnswer((_) async => 42);
   });
 
   MeasurementFormBloc buildBloc() {
@@ -50,14 +59,14 @@ void main() {
     build: buildBloc,
     act: (bloc) {
       bloc
-        ..add(const MeasurementFormEvent.moodChanged(4))
+        ..add(const MeasurementFormEvent.moodChanged(2))
         ..add(MeasurementFormEvent.timestampChanged(DateTime(2026, 3, 21, 8, 15)))
         ..add(const MeasurementFormEvent.commentChanged('after walk'))
         ..add(const MeasurementFormEvent.tagsChanged(['morning', 'walk']));
     },
     expect:
         () => [
-          isA<MeasurementFormState>().having((s) => s.mood, 'mood', 4),
+          isA<MeasurementFormState>().having((s) => s.mood, 'mood', 2),
           isA<MeasurementFormState>().having(
             (s) => s.timestamp,
             'timestamp',
@@ -87,7 +96,18 @@ void main() {
               .having((s) => s.formError, 'formError', isNotNull),
         ],
     verify: (_) {
-      verifyNever(() => repository.add(any()));
+      verifyNever(
+        () => repository.create(
+          systolic: any(named: 'systolic'),
+          diastolic: any(named: 'diastolic'),
+          pulse: any(named: 'pulse'),
+          timestamp: any(named: 'timestamp'),
+          mood: any(named: 'mood'),
+          comment: any(named: 'comment'),
+          tags: any(named: 'tags'),
+          category: any(named: 'category'),
+        ),
+      );
     },
   );
 
@@ -110,7 +130,18 @@ void main() {
               .having((s) => s.formError, 'formError', isNotNull),
         ],
     verify: (_) {
-      verifyNever(() => repository.add(any()));
+      verifyNever(
+        () => repository.create(
+          systolic: any(named: 'systolic'),
+          diastolic: any(named: 'diastolic'),
+          pulse: any(named: 'pulse'),
+          timestamp: any(named: 'timestamp'),
+          mood: any(named: 'mood'),
+          comment: any(named: 'comment'),
+          tags: any(named: 'tags'),
+          category: any(named: 'category'),
+        ),
+      );
     },
   );
 
@@ -141,17 +172,18 @@ void main() {
               .having((s) => s.formError, 'formError', isNull),
         ],
     verify: (_) {
-      final captured = verify(() => repository.add(captureAny())).captured.single;
-      final measurement = captured as domain.Measurement;
-
-      expect(measurement.systolic, 120);
-      expect(measurement.diastolic, 80);
-      expect(measurement.pulse, 65);
-      expect(measurement.mood, 3);
-      expect(measurement.comment, 'evening');
-      expect(measurement.tags, ['home']);
-      expect(measurement.timestamp, DateTime(2026, 3, 20, 19, 30));
-      expect(measurement.category, BpCategory.normal);
+      verify(
+        () => repository.create(
+          systolic: 120,
+          diastolic: 80,
+          pulse: 65,
+          timestamp: DateTime(2026, 3, 20, 19, 30),
+          mood: 3,
+          comment: 'evening',
+          tags: ['home'],
+          category: BpCategory.normal,
+        ),
+      ).called(1);
     },
   );
 
@@ -169,9 +201,17 @@ void main() {
         ),
     act: (bloc) => bloc.add(const MeasurementFormEvent.submitted()),
     verify: (_) {
-      final captured = verify(() => repository.add(captureAny())).captured.single;
-      final measurement = captured as domain.Measurement;
-      expect(measurement.comment, 'evening');
+      verify(
+        () => repository.create(
+          systolic: 120,
+          diastolic: 80,
+          pulse: 65,
+          timestamp: DateTime(2026, 3, 20, 19, 30),
+          comment: 'evening',
+          tags: [],
+          category: BpCategory.normal,
+        ),
+      ).called(1);
     },
   );
 
@@ -186,14 +226,36 @@ void main() {
         ..add(const MeasurementFormEvent.submitted());
     },
     verify: (_) {
-      verify(() => repository.add(any())).called(1);
+      verify(
+        () => repository.create(
+          systolic: any(named: 'systolic'),
+          diastolic: any(named: 'diastolic'),
+          pulse: any(named: 'pulse'),
+          timestamp: any(named: 'timestamp'),
+          mood: any(named: 'mood'),
+          comment: any(named: 'comment'),
+          tags: any(named: 'tags'),
+          category: any(named: 'category'),
+        ),
+      ).called(1);
     },
   );
 
   blocTest<MeasurementFormBloc, MeasurementFormState>(
     'sets failure when repository throws',
     build: () {
-      when(() => repository.add(any())).thenThrow(Exception('db fail'));
+      when(
+        () => repository.create(
+          systolic: any(named: 'systolic'),
+          diastolic: any(named: 'diastolic'),
+          pulse: any(named: 'pulse'),
+          timestamp: any(named: 'timestamp'),
+          mood: any(named: 'mood'),
+          comment: any(named: 'comment'),
+          tags: any(named: 'tags'),
+          category: any(named: 'category'),
+        ),
+      ).thenThrow(Exception('db fail'));
       return buildBloc();
     },
     seed:
@@ -221,7 +283,18 @@ void main() {
   blocTest<MeasurementFormBloc, MeasurementFormState>(
     'clears formError and keeps isSubmitSuccess false on any changed event after failed submit',
     build: () {
-      when(() => repository.add(any())).thenThrow(Exception('db fail'));
+      when(
+        () => repository.create(
+          systolic: any(named: 'systolic'),
+          diastolic: any(named: 'diastolic'),
+          pulse: any(named: 'pulse'),
+          timestamp: any(named: 'timestamp'),
+          mood: any(named: 'mood'),
+          comment: any(named: 'comment'),
+          tags: any(named: 'tags'),
+          category: any(named: 'category'),
+        ),
+      ).thenThrow(Exception('db fail'));
       return buildBloc();
     },
     seed:

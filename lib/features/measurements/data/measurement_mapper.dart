@@ -13,11 +13,15 @@ domain.Measurement mapMeasurementRowToDomain(db.Measurement row) {
   }
 
   return domain.Measurement(
+    id: row.id,
     systolic: row.systolic,
     diastolic: row.diastolic,
     pulse: row.pulse,
     timestamp: row.timestamp,
-    mood: row.mood,
+    mood: switch (row.mood) {
+      final mood? when mood >= 0 && mood <= 3 => mood,
+      _ => null,
+    },
     comment: row.comment,
     tags: _decodeTags(row.tagsJson),
     category: BpCategory.values[categoryIndex],
@@ -32,8 +36,8 @@ db.MeasurementsCompanion mapMeasurementToCompanion(
     diastolic: measurement.diastolic,
     pulse: measurement.pulse,
     timestamp: measurement.timestamp,
-    mood: measurement.mood == null ? const Value.absent() : Value(measurement.mood),
-    comment: measurement.comment == null ? const Value.absent() : Value(measurement.comment),
+    mood: Value(measurement.mood),
+    comment: Value(measurement.comment),
     tagsJson: Value(jsonEncode(measurement.tags)),
     category: measurement.category.index,
   );

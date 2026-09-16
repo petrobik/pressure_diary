@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Measurement {
 
- int get systolic; int get diastolic; int get pulse; DateTime get timestamp; int? get mood; String? get comment; List<String> get tags; BpCategory get category;
+ int get id; int get systolic; int get diastolic; int get pulse; DateTime get timestamp; int? get mood; String? get comment; List<String> get tags; BpCategory get category;
 /// Create a copy of Measurement
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $MeasurementCopyWith<Measurement> get copyWith => _$MeasurementCopyWithImpl<Meas
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Measurement&&(identical(other.systolic, systolic) || other.systolic == systolic)&&(identical(other.diastolic, diastolic) || other.diastolic == diastolic)&&(identical(other.pulse, pulse) || other.pulse == pulse)&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp)&&(identical(other.mood, mood) || other.mood == mood)&&(identical(other.comment, comment) || other.comment == comment)&&const DeepCollectionEquality().equals(other.tags, tags)&&(identical(other.category, category) || other.category == category));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Measurement&&(identical(other.id, id) || other.id == id)&&(identical(other.systolic, systolic) || other.systolic == systolic)&&(identical(other.diastolic, diastolic) || other.diastolic == diastolic)&&(identical(other.pulse, pulse) || other.pulse == pulse)&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp)&&(identical(other.mood, mood) || other.mood == mood)&&(identical(other.comment, comment) || other.comment == comment)&&const DeepCollectionEquality().equals(other.tags, tags)&&(identical(other.category, category) || other.category == category));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,systolic,diastolic,pulse,timestamp,mood,comment,const DeepCollectionEquality().hash(tags),category);
+int get hashCode => Object.hash(runtimeType,id,systolic,diastolic,pulse,timestamp,mood,comment,const DeepCollectionEquality().hash(tags),category);
 
 @override
 String toString() {
-  return 'Measurement(systolic: $systolic, diastolic: $diastolic, pulse: $pulse, timestamp: $timestamp, mood: $mood, comment: $comment, tags: $tags, category: $category)';
+  return 'Measurement(id: $id, systolic: $systolic, diastolic: $diastolic, pulse: $pulse, timestamp: $timestamp, mood: $mood, comment: $comment, tags: $tags, category: $category)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $MeasurementCopyWith<$Res>  {
   factory $MeasurementCopyWith(Measurement value, $Res Function(Measurement) _then) = _$MeasurementCopyWithImpl;
 @useResult
 $Res call({
- int systolic, int diastolic, int pulse, DateTime timestamp, int? mood, String? comment, List<String> tags, BpCategory category
+ int id, int systolic, int diastolic, int pulse, DateTime timestamp, int? mood, String? comment, List<String> tags, BpCategory category
 });
 
 
@@ -62,9 +62,10 @@ class _$MeasurementCopyWithImpl<$Res>
 
 /// Create a copy of Measurement
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? systolic = null,Object? diastolic = null,Object? pulse = null,Object? timestamp = null,Object? mood = freezed,Object? comment = freezed,Object? tags = null,Object? category = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? systolic = null,Object? diastolic = null,Object? pulse = null,Object? timestamp = null,Object? mood = freezed,Object? comment = freezed,Object? tags = null,Object? category = null,}) {
   return _then(_self.copyWith(
-systolic: null == systolic ? _self.systolic : systolic // ignore: cast_nullable_to_non_nullable
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,systolic: null == systolic ? _self.systolic : systolic // ignore: cast_nullable_to_non_nullable
 as int,diastolic: null == diastolic ? _self.diastolic : diastolic // ignore: cast_nullable_to_non_nullable
 as int,pulse: null == pulse ? _self.pulse : pulse // ignore: cast_nullable_to_non_nullable
 as int,timestamp: null == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
@@ -157,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int systolic,  int diastolic,  int pulse,  DateTime timestamp,  int? mood,  String? comment,  List<String> tags,  BpCategory category)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int systolic,  int diastolic,  int pulse,  DateTime timestamp,  int? mood,  String? comment,  List<String> tags,  BpCategory category)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Measurement() when $default != null:
-return $default(_that.systolic,_that.diastolic,_that.pulse,_that.timestamp,_that.mood,_that.comment,_that.tags,_that.category);case _:
+return $default(_that.id,_that.systolic,_that.diastolic,_that.pulse,_that.timestamp,_that.mood,_that.comment,_that.tags,_that.category);case _:
   return orElse();
 
 }
@@ -178,10 +179,10 @@ return $default(_that.systolic,_that.diastolic,_that.pulse,_that.timestamp,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int systolic,  int diastolic,  int pulse,  DateTime timestamp,  int? mood,  String? comment,  List<String> tags,  BpCategory category)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int systolic,  int diastolic,  int pulse,  DateTime timestamp,  int? mood,  String? comment,  List<String> tags,  BpCategory category)  $default,) {final _that = this;
 switch (_that) {
 case _Measurement():
-return $default(_that.systolic,_that.diastolic,_that.pulse,_that.timestamp,_that.mood,_that.comment,_that.tags,_that.category);case _:
+return $default(_that.id,_that.systolic,_that.diastolic,_that.pulse,_that.timestamp,_that.mood,_that.comment,_that.tags,_that.category);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -198,10 +199,10 @@ return $default(_that.systolic,_that.diastolic,_that.pulse,_that.timestamp,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int systolic,  int diastolic,  int pulse,  DateTime timestamp,  int? mood,  String? comment,  List<String> tags,  BpCategory category)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int systolic,  int diastolic,  int pulse,  DateTime timestamp,  int? mood,  String? comment,  List<String> tags,  BpCategory category)?  $default,) {final _that = this;
 switch (_that) {
 case _Measurement() when $default != null:
-return $default(_that.systolic,_that.diastolic,_that.pulse,_that.timestamp,_that.mood,_that.comment,_that.tags,_that.category);case _:
+return $default(_that.id,_that.systolic,_that.diastolic,_that.pulse,_that.timestamp,_that.mood,_that.comment,_that.tags,_that.category);case _:
   return null;
 
 }
@@ -213,9 +214,10 @@ return $default(_that.systolic,_that.diastolic,_that.pulse,_that.timestamp,_that
 
 
 class _Measurement implements Measurement {
-  const _Measurement({required this.systolic, required this.diastolic, required this.pulse, required this.timestamp, this.mood, this.comment, final  List<String> tags = const [], required this.category}): _tags = tags;
+  const _Measurement({required this.id, required this.systolic, required this.diastolic, required this.pulse, required this.timestamp, this.mood, this.comment, final  List<String> tags = const [], required this.category}): _tags = tags;
   
 
+@override final  int id;
 @override final  int systolic;
 @override final  int diastolic;
 @override final  int pulse;
@@ -241,16 +243,16 @@ _$MeasurementCopyWith<_Measurement> get copyWith => __$MeasurementCopyWithImpl<_
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Measurement&&(identical(other.systolic, systolic) || other.systolic == systolic)&&(identical(other.diastolic, diastolic) || other.diastolic == diastolic)&&(identical(other.pulse, pulse) || other.pulse == pulse)&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp)&&(identical(other.mood, mood) || other.mood == mood)&&(identical(other.comment, comment) || other.comment == comment)&&const DeepCollectionEquality().equals(other._tags, _tags)&&(identical(other.category, category) || other.category == category));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Measurement&&(identical(other.id, id) || other.id == id)&&(identical(other.systolic, systolic) || other.systolic == systolic)&&(identical(other.diastolic, diastolic) || other.diastolic == diastolic)&&(identical(other.pulse, pulse) || other.pulse == pulse)&&(identical(other.timestamp, timestamp) || other.timestamp == timestamp)&&(identical(other.mood, mood) || other.mood == mood)&&(identical(other.comment, comment) || other.comment == comment)&&const DeepCollectionEquality().equals(other._tags, _tags)&&(identical(other.category, category) || other.category == category));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,systolic,diastolic,pulse,timestamp,mood,comment,const DeepCollectionEquality().hash(_tags),category);
+int get hashCode => Object.hash(runtimeType,id,systolic,diastolic,pulse,timestamp,mood,comment,const DeepCollectionEquality().hash(_tags),category);
 
 @override
 String toString() {
-  return 'Measurement(systolic: $systolic, diastolic: $diastolic, pulse: $pulse, timestamp: $timestamp, mood: $mood, comment: $comment, tags: $tags, category: $category)';
+  return 'Measurement(id: $id, systolic: $systolic, diastolic: $diastolic, pulse: $pulse, timestamp: $timestamp, mood: $mood, comment: $comment, tags: $tags, category: $category)';
 }
 
 
@@ -261,7 +263,7 @@ abstract mixin class _$MeasurementCopyWith<$Res> implements $MeasurementCopyWith
   factory _$MeasurementCopyWith(_Measurement value, $Res Function(_Measurement) _then) = __$MeasurementCopyWithImpl;
 @override @useResult
 $Res call({
- int systolic, int diastolic, int pulse, DateTime timestamp, int? mood, String? comment, List<String> tags, BpCategory category
+ int id, int systolic, int diastolic, int pulse, DateTime timestamp, int? mood, String? comment, List<String> tags, BpCategory category
 });
 
 
@@ -278,9 +280,10 @@ class __$MeasurementCopyWithImpl<$Res>
 
 /// Create a copy of Measurement
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? systolic = null,Object? diastolic = null,Object? pulse = null,Object? timestamp = null,Object? mood = freezed,Object? comment = freezed,Object? tags = null,Object? category = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? systolic = null,Object? diastolic = null,Object? pulse = null,Object? timestamp = null,Object? mood = freezed,Object? comment = freezed,Object? tags = null,Object? category = null,}) {
   return _then(_Measurement(
-systolic: null == systolic ? _self.systolic : systolic // ignore: cast_nullable_to_non_nullable
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,systolic: null == systolic ? _self.systolic : systolic // ignore: cast_nullable_to_non_nullable
 as int,diastolic: null == diastolic ? _self.diastolic : diastolic // ignore: cast_nullable_to_non_nullable
 as int,pulse: null == pulse ? _self.pulse : pulse // ignore: cast_nullable_to_non_nullable
 as int,timestamp: null == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable

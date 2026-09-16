@@ -13,7 +13,7 @@ void main() {
         diastolic: 84,
         pulse: 72,
         timestamp: DateTime(2026, 3, 21, 9, 30),
-        mood: 4,
+        mood: 2,
         comment: 'after walk',
         tagsJson: '["morning","walk"]',
         category: BpCategory.normal.index,
@@ -23,11 +23,12 @@ void main() {
 
       final result = mapMeasurementRowToDomain(row);
 
+      expect(result.id, 1);
       expect(result.systolic, 128);
       expect(result.diastolic, 84);
       expect(result.pulse, 72);
       expect(result.timestamp, DateTime(2026, 3, 21, 9, 30));
-      expect(result.mood, 4);
+      expect(result.mood, 2);
       expect(result.comment, 'after walk');
       expect(result.tags, ['morning', 'walk']);
       expect(result.category, BpCategory.normal);
@@ -118,6 +119,7 @@ void main() {
   group('mapMeasurementToCompanion', () {
     test('maps domain model to companion with nullable values', () {
       final measurement = domain.Measurement(
+        id: 17,
         systolic: 135,
         diastolic: 88,
         pulse: 75,
@@ -144,8 +146,9 @@ void main() {
       expect(companion.category.value, BpCategory.highNormal.index);
     });
 
-    test('keeps nullable fields absent when mood/comment are null', () {
+    test('maps null mood/comment explicitly for clearing persisted fields', () {
       final measurement = domain.Measurement(
+        id: 17,
         systolic: 118,
         diastolic: 76,
         pulse: 66,
@@ -158,8 +161,10 @@ void main() {
 
       final companion = mapMeasurementToCompanion(measurement);
 
-      expect(companion.mood.present, isFalse);
-      expect(companion.comment.present, isFalse);
+      expect(companion.mood.present, isTrue);
+      expect(companion.mood.value, isNull);
+      expect(companion.comment.present, isTrue);
+      expect(companion.comment.value, isNull);
       expect(companion.tagsJson.value, '[]');
       expect(companion.category.value, BpCategory.optimal.index);
     });

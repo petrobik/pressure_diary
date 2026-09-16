@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:drift/drift.dart';
+import 'package:pressure_diary/core/blood_pressure/bp_category.dart';
+import 'package:pressure_diary/core/db/app_database.dart';
 import 'package:pressure_diary/core/db/daos/measurements_dao.dart';
 import 'package:pressure_diary/features/measurements/data/measurement_mapper.dart';
 import 'package:pressure_diary/features/measurements/domain/measurement.dart' as domain;
@@ -10,20 +14,38 @@ class MeasurementRepository {
 
   final MeasurementsDao _dao;
 
-  Future<void> add(domain.Measurement measurement) async {
-    await _dao.insertMeasurement(mapMeasurementToCompanion(measurement));
+  Future<int> create({
+    required int systolic,
+    required int diastolic,
+    required int pulse,
+    required DateTime timestamp,
+    int? mood,
+    String? comment,
+    List<String> tags = const [],
+    required BpCategory category,
+  }) {
+    return _dao.insertMeasurement(
+      MeasurementsCompanion.insert(
+        systolic: systolic,
+        diastolic: diastolic,
+        pulse: pulse,
+        timestamp: timestamp,
+        mood: Value(mood),
+        comment: Value(comment),
+        tagsJson: Value(jsonEncode(tags)),
+        category: category.index,
+      ),
+    );
   }
 
-  Future<void> update({
-    required int id,
-    required domain.Measurement measurement,
-  }) async {
-    final companion = mapMeasurementToCompanion(measurement).copyWith(
-      mood: Value(measurement.mood),
-      comment: Value(measurement.comment),
+  Future<void> update(domain.Measurement measurement) async {
+    final updatedRows = await _dao.updateById(
+      measurement.id,
+      mapMeasurementToCompanion(measurement),
     );
-
-    await _dao.updateById(id, companion);
+    if (updatedRows == 0) {
+      throw StateError('Measurement ${measurement.id} does not exist');
+    }
   }
 
   Future<void> delete(int id) async {

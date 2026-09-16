@@ -6,6 +6,7 @@ part 'measurement.freezed.dart';
 @freezed
 abstract class Measurement with _$Measurement {
   const factory Measurement({
+    required int id,
     required int systolic,
     required int diastolic,
     required int pulse,

@@ -1,7 +1,6 @@
 part of 'measurement_form.dart';
 
 class MeasurementFormBloc extends Bloc<MeasurementFormEvent, MeasurementFormState> {
-
   static const _invalidRequiredFieldsMessage = 'Заполните корректно систолическое, диастолическое и пульс.';
   static const _saveFailedMessage = 'Не удалось сохранить измерение. Попробуйте снова.';
 
@@ -11,7 +10,6 @@ class MeasurementFormBloc extends Bloc<MeasurementFormEvent, MeasurementFormStat
   }) : _repository = repository,
        _classifier = classifier,
        super(MeasurementFormState.initial(timestamp: DateTime.now())) {
-        
     on<MeasurementFormEvent>(
       (event, emit) => switch (event) {
         _SystolicChanged(:final value) => _systolicChanged(value, emit),
@@ -79,9 +77,9 @@ class MeasurementFormBloc extends Bloc<MeasurementFormEvent, MeasurementFormStat
     ),
   );
 
-  void _timestampChanged(DateTime timastamp, Emitter<MeasurementFormState> emit) => emit(
+  void _timestampChanged(DateTime timestamp, Emitter<MeasurementFormState> emit) => emit(
     state.copyWith(
-      timestamp: timastamp,
+      timestamp: timestamp,
       isSubmitSuccess: false,
       formError: null,
     ),
@@ -120,7 +118,7 @@ class MeasurementFormBloc extends Bloc<MeasurementFormEvent, MeasurementFormStat
     try {
       final comment = state.commentInput.trim();
 
-      final measurement = Measurement(
+      await _repository.create(
         systolic: systolic,
         diastolic: diastolic,
         pulse: pulse,
@@ -133,8 +131,6 @@ class MeasurementFormBloc extends Bloc<MeasurementFormEvent, MeasurementFormStat
           diastolic: diastolic,
         ),
       );
-
-      await _repository.add(measurement);
 
       emit(
         state.copyWith(
