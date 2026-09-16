@@ -52,6 +52,12 @@ class MeasurementRepository {
     await _dao.deleteById(id);
   }
 
+  Future<void> restore(domain.Measurement measurement) async {
+    await _dao.insertMeasurement(
+      mapMeasurementToCompanion(measurement).copyWith(id: Value(measurement.id)),
+    );
+  }
+
   Stream<List<domain.Measurement>> watchAll() {
     return _dao.watchAll().map(
       (rows) => rows.map(mapMeasurementRowToDomain).toList(growable: false),

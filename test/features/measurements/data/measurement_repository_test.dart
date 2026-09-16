@@ -117,4 +117,46 @@ void main() {
     expect(await next, isTrue);
     expect(stream.current.map((m) => m.id), [firstId, thirdId]);
   });
+
+  test('restore preserves all fields and watchAll order; subsequent create gets a new ID', () async {
+    final olderId = await create(time: timestamp.subtract(const Duration(days: 1)));
+    final firstId = await create();
+    final restoredId = await create();
+    final newerId = await create(time: timestamp.add(const Duration(days: 1)));
+    final stream = StreamIterator(repository.watchAll());
+    addTearDown(stream.cancel);
+    expect(await stream.moveNext(), isTrue);
+    final original = stream.current.singleWhere((m) => m.id == restoredId);
+
+    var next = stream.moveNext();
+    await repository.delete(restoredId);
+    expect(await next, isTrue);
+    expect(stream.current.map((m) => m.id), [newerId, firstId, olderId]);
+
+    next = stream.moveNext();
+    await repository.restore(original);
+    expect(await next, isTrue);
+    expect(stream.current.map((m) => m.id), [newerId, restoredId, firstId, olderId]);
+    expect(stream.current.singleWhere((m) => m.id == restoredId), original);
+
+    next = stream.moveNext();
+    final nextId = await create();
+    expect(await next, isTrue);
+    expect(nextId, greaterThan(newerId));
+    expect(stream.current.map((m) => m.id), [newerId, nextId, restoredId, firstId, olderId]);
+  });
+
+  test('restore of occupied ID fails without changing the existing row', () async {
+    await create();
+    final original = (await repository.getLatest())!;
+    await repository.delete(original.id);
+    final occupant = original.copyWith(pulse: 91, mood: null, comment: null, tags: []);
+    await repository.restore(occupant);
+    final rowBefore = await database.select(database.measurements).getSingle();
+
+    await expectLater(repository.restore(original), throwsA(isA<SqliteException>()));
+
+    expect(await database.select(database.measurements).getSingle(), rowBefore);
+    expect(await repository.watchAll().first, [occupant]);
+  });
 }
